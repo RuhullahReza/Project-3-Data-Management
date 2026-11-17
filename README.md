@@ -8,6 +8,21 @@
    docker compose up -d
    ```
 
+## Seed Data
+1. Make sure database Postgres dari project 2 sudah aktif
+
+2. Copy env Variable
+
+   ```bash
+   cp .env.example .env  
+   ```
+
+2. Seed data
+
+   ```bash
+   python scripts/seed.py
+   ```
+
 ## Python Environment
 
 1. Virtual environment

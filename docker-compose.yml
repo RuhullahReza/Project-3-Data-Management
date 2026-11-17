@@ -20,7 +20,7 @@ services:
   keydb:
     image: eqalpha/keydb:latest
     container_name: keydb
-     command: >
+    command: >
       keydb-server --appendonly yes
       --requirepass password
       --user root on >password ~* +@all
