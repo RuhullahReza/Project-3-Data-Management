@@ -23,7 +23,7 @@ services:
     command: >
       keydb-server --appendonly yes
       --requirepass password
-      --user root on >password ~* +@all
+      --user root on ">password" "~*" "+@all"
     ports:
       - "6379:6379"
     volumes:
