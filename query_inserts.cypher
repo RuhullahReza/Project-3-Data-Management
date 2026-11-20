@@ -26,7 +26,7 @@ SET a.account_no = 'TAB-2001-001',
 MERGE (c)-[:HOLDS]->(a);
 
 // 4. Contoh transaksi rekening (AccountTransaction) - simulasi transfer keluar/debit
-MATCH (c:Customer {customer_id: 1001})
+MATCH (c:Customer {customer_id: 1001}), (a:Account {account_id: 2001})
 MERGE (t:Transaction {transaction_id: 5001})
 SET t:AccountTransaction,
     t.transaction_type = 'account_transaction',
@@ -41,7 +41,8 @@ SET t:AccountTransaction,
     t.receipt_issued_datetime = datetime('2026-11-10T08:30:12'),
     t.receipt_delivery_format = 'DIGITAL',
     t.receipt_reprint_count = 0
-MERGE (c)-[:PERFORMS]->(t);
+MERGE (c)-[:PERFORMS]->(t)
+MERGE (t)-[:TRANSFERED_TO]->(a);
 
 // 5. Tagihan (Bill) yang diterbitkan partner - misalnya tagihan listrik bulan ini
 MATCH (p:Partner {partner_id: 10})

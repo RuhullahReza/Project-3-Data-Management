@@ -147,6 +147,9 @@ def load_account_transactions(pg, graph_db):
     WITH t, row
     MATCH (c:Customer {customer_id: row.customer_id})
     MERGE (c)-[:PERFORMS]->(t)
+    WITH t, row
+    MATCH (a:Account {account_id: row.account_id})
+    MERGE (t)-[:TRANSFERED_TO]->(a)
     """
 
     stream(pg, graph_db, sql, cypher)
