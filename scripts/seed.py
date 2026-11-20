@@ -306,7 +306,7 @@ def load_disbursement_dan_payout(pg, graph_db):
     UNWIND $rows AS row
     MATCH (mo:MoneyOrder {money_order_id: row.money_order_id})
     MATCH (p:Payout {payout_id: row.payout_id})
-    MERGE (mo)-[:PAID_OUT_AS]->(p)
+    MERGE (mo)-[:PAID_OUT]->(p)
     """
 
     stream(pg, graph_db, sql, cypher)
